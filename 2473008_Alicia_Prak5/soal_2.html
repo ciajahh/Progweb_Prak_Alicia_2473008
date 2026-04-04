@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>2473008-Alicia</title>
+    <style>
+        .container {
+            position: relative;
+            height: 300px;
+            margin-top: 50px;
+        }
+
+        .circle-img {
+            position: absolute;
+            width: 150px;
+        }
+
+        .red-left {
+            left: 40px;
+            z-index: 1;
+        }
+
+        .red-right {
+            left: 220px;
+            z-index: 1;
+        }
+
+        .purple-center {
+            left: 130px;
+            z-index: 2;
+        }
+
+        .red-half-left {
+            left: 40px;
+            z-index: 3;
+        }
+
+        .red-half-right {
+            left: 220px;
+            z-index: 3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <img src="src/circle-red.png" class="circle-img red-left">
+        <img src="src/circle-red.png" class="circle-img red-right">
+
+        <img src="src/circle-purple.png" class="circle-img purple-center">
+
+        <img src="src/circle-red-half.png" class="circle-img red-half-left">
+        <img src="src/circle-red-half.png" class="circle-img red-half-right">
+    </div>
+
+</body>
+
+</html>
