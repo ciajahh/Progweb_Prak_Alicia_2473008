@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>2473008-Alicia</title>
+    <style>
+        .input-box {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: inline-block;
+            width: 130px;
+        }
+
+        input {
+            margin-left: 10px;
+            padding: 3px;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        td {
+            border: 2px solid black;
+            width: 60px;
+            height: 45px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 5px 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="input-box">
+        <label>Angka Pertama</label>: 
+        <input type="text" id="a1">
+    </div>
+
+    <div class="input-box">
+        <label>Angka Kedua</label>: 
+        <input type="text" id="a2">
+    </div>
+
+    <button id="btnHitung">Count</button>
+
+    <table>
+        <tr>
+            <td id="plus1"></td>
+            <td>+</td>
+            <td id="plus2"></td>
+            <td>=</td>
+            <td id="hasilPlus"></td>
+        </tr>
+        <tr>
+            <td id="min1"></td>
+            <td>-</td>
+            <td id="min2"></td>
+            <td>=</td>
+            <td id="hasilMin"></td>
+        </tr>
+    </table>
+
+    <script>
+        document.getElementById("btnHitung").addEventListener("click", proses);
+
+        function proses() {
+            let x = document.getElementById("a1").value.trim();
+            let y = document.getElementById("a2").value.trim();
+
+            if (!x || !y) {
+                alert("Mohon isi kedua angka terlebih dahulu.");
+                return;
+            }
+
+            if (isNaN(x) || isNaN(y)) {
+                if (isNaN(x) && isNaN(y)) {
+                    alert("angka pertama dan kedua harus angka.");
+                } else if (isNaN(x)) {
+                    alert("angka pertama bukan angka.");
+                } else {
+                    alert("angka kedua harus angka.");
+                }
+                return;
+            }
+
+            let angka1 = Number(x);
+            let angka2 = Number(y);
+
+            tampilHasil(angka1, angka2);
+        }
+
+        function tampilHasil(a, b) {
+            // Penjumlahan
+            document.getElementById("plus1").textContent = a;
+            document.getElementById("plus2").textContent = b;
+            document.getElementById("hasilPlus").textContent = a + b;
+
+            // Pengurangan
+            document.getElementById("min1").textContent = a;
+            document.getElementById("min2").textContent = b;
+            document.getElementById("hasilMin").textContent = a - b;
+        }
+    </script>
+
+</body>
+
+</html>

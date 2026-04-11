@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>2473008-Alicia</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+        }
+
+        .container {
+            width: 400px;
+            border: 1px solid #aaa;
+            padding: 10px;
+        }
+
+        .row {
+            display: flex;
+            margin-bottom: 8px;
+            align-items: center;
+        }
+
+        .label {
+            width: 90px;
+            color: blue;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        input {
+            flex: 1;
+            padding: 4px;
+        }
+
+        input[readonly] {
+            color: gray;
+        }
+
+        .center {
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        select {
+            padding: 3px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 5px 12px;
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="label">Input :</div>
+            <input type="text" id="inp">
+        </div>
+
+        <div class="row">
+            <div class="label">Output :</div>
+            <input type="text" id="out" readonly>
+        </div>
+
+        <div class="center">
+            <select id="mode">
+                <option value="1">decimal-biner</option>
+                <option value="2">biner-decimal</option>
+            </select>
+        </div>
+
+        <div class="center">
+            <button id="btnProses">PROSES</button>
+            <button id="btnReset">RESET</button>
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById("inp");
+        const output = document.getElementById("out");
+        const mode = document.getElementById("mode");
+
+        document.getElementById("btnProses").addEventListener("click", convert);
+        document.getElementById("btnReset").addEventListener("click", clearForm);
+
+        function convert() {
+            let val = input.value.trim();
+
+            if (!val) {
+                alert("Silakan isi nilai input terlebih dahulu.");
+                return;
+            }
+
+            if (mode.value == "1") {
+                let num = Number(val);
+
+                if (!Number.isInteger(num) || num < 0 || num > 255) {
+                    alert("Untuk konversi decimal-biner, input hanya boleh angka 0 s/d 255.");
+                    return;
+                }
+
+                output.value = toBinary(num);
+            } else {
+                if (!/^[01]{8}$/.test(val)) {
+                    alert("Untuk konversi biner-decimal, input harus tepat 8 digit angka (0 atau 1).");
+                    return;
+                }
+
+                output.value = toDecimal(val);
+            }
+        }
+
+        function toBinary(n) {
+            let result = "";
+
+            do {
+                result = (n % 2) + result;
+                n = Math.floor(n / 2);
+            } while (n > 0);
+
+            return result;
+        }
+
+        function toDecimal(bin) {
+            return bin.split("").reduce((acc, bit) => acc * 2 + Number(bit), 0);
+        }
+
+        function clearForm() {
+            input.value = "";
+            output.value = "";
+        }
+    </script>
+
+</body>
+
+</html>

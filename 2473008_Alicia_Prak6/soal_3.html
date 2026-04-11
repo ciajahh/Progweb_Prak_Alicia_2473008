@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>2473008-Alicia</title>
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        .input-box {
+            border: 1px solid #ccc;
+            padding: 12px;
+            display: inline-block;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .output-box {
+            border: 1px solid #999;
+            padding: 6px;
+            display: none;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        .isi {
+            background-color: orange;
+            border: 1px solid white;
+        }
+
+        .kosong {
+            border: none;
+        }
+
+        button {
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="input-box">
+        Tinggi Piramida: 
+        <input type="number" id="inputTinggi" min="1"><br>
+        <button id="btn">Proses</button>
+    </div>
+
+    <br><br>
+
+    <div id="output" class="output-box"></div>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", generate);
+
+        function generate() {
+            let nilai = document.getElementById("inputTinggi").value;
+            let tinggi = Number(nilai);
+
+            if (!nilai || tinggi <= 0) {
+                alert("Masukkan angka tinggi piramida yang valid.");
+                return;
+            }
+
+            let wadah = document.getElementById("output");
+            wadah.style.display = "inline-block";
+            wadah.innerHTML = "";
+
+            let tabel = document.createElement("table");
+            tabel.setAttribute("width", "800");
+            tabel.setAttribute("height", "600");
+
+            let maxKolom = (tinggi * 2) - 1;
+            let tengah = Math.ceil(maxKolom / 2);
+
+            for (let i = 1; i <= tinggi; i++) {
+                let tr = document.createElement("tr");
+
+                for (let j = 1; j <= maxKolom; j++) {
+                    let td = document.createElement("td");
+
+                    let kiri = tengah - i + 1;
+                    let kanan = tengah + i - 1;
+
+                    if (j >= kiri && j <= kanan) {
+                        td.className = "isi";
+                    } else {
+                        td.className = "kosong";
+                    }
+
+                    tr.appendChild(td);
+                }
+
+                tabel.appendChild(tr);
+            }
+
+            wadah.appendChild(tabel);
+        }
+    </script>
+
+</body>
+
+</html>

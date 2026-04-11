@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>2473008-Alicia</title>
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 4px;
+            border: 1px solid black;
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="hasil"></div>
+
+    <script>
+        function ambilInput() {
+            let nilai;
+
+            while (true) {
+                nilai = prompt("A number?");
+                if (nilai !== null && nilai.trim() !== "" && !isNaN(nilai)) {
+                    return Number(nilai);
+                }
+            }
+        }
+
+        function buatTabel(n) {
+            let tabel = document.createElement("table");
+
+            for (let i = 1; i <= 8; i++) {
+                let baris = document.createElement("tr");
+
+                let isi = [i, "x", n, "=", i * n];
+
+                isi.forEach(function(item) {
+                    let kolom = document.createElement("td");
+                    kolom.textContent = item;
+                    baris.appendChild(kolom);
+                });
+
+                tabel.appendChild(baris);
+            }
+
+            return tabel;
+        }
+
+        let angka = ambilInput();
+        let tabelHasil = buatTabel(angka);
+
+        document.getElementById("hasil").appendChild(tabelHasil);
+    </script>
+
+</body>
+
+</html>
